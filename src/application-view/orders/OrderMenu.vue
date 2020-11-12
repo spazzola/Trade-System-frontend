@@ -7,8 +7,8 @@
                     <select 
                     @change="onSelectedMerhant($event)">
                         <option>Wszyscy</option>
-                        <option>Klienta</option>
-                        <option>Kontrahenta</option>
+                        <option>Kupca</option>
+                        <option>Sprzedawcy</option>
                     </select>
                 
             
@@ -142,7 +142,6 @@ export default {
         addOrder() {
             this.$store.state.isAddingOrder = !this.$store.state.isAddingOrder
             this.$root.$emit(this.$store.state.isAddingOrder)
-            console.log(this.$store.state.isAddingOrder)
         }
     },
     mounted() {

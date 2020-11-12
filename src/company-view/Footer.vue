@@ -1,6 +1,6 @@
 <template>
      <div class="footer">
-        <div id="footer"> &copy; 2020 Created by Rafal Szczotka. All rights reserved.
+        <div id="footer"> &copy; 2020 Forest Industry S.A. All rights reserved.
             <router-link to="/login" class="tilelink"> &emsp; Panel administratora</router-link>
         </div>
     </div>
@@ -26,7 +26,7 @@ export default {
     bottom: -910px;
     height: 30px;
     width: 100%;
-    font-size: 12px;
+    font-size: 0.70vw;
     font-family: 'Libre Baskerville', serif;
     text-align: center;
     color: #ffffff;

@@ -28,7 +28,7 @@
             </div>
 
             <div class="form-group">
-            <label>Wybierz klienta</label>
+            <label>Wybierz kupca</label>
             <br />
             <select v-model="price.buyer">
                 <option
@@ -73,14 +73,14 @@ export default {
                 }
             }).then(resp => {
                 if (resp.status == 200) {
-                    alert('Dodano cenę dla klienta')
+                    alert('Dodano cenę dla kupca')
                 }
-            }).catch((error) => {alert(error.response.data.message)});
+            }).catch((error) => {alert('Nie dodano ceny dla kupca'), console.log(error.response.data.message)});
         },
     },
      created() {
         this.buyers = []
-        axios.get("http://localhost:8080/buyer/getAll", {
+        axios.get("/buyer/getAll", {
         headers: {
                 'Authorization': 'Bearer ' + this.$store.state.jwt
             }
@@ -119,4 +119,9 @@ export default {
   margin: 0.5%;
   float: left;
 }
+
+label, .form-group, .form-control, .btn {
+    font-size: 0.9vw;
+}
+
 </style>

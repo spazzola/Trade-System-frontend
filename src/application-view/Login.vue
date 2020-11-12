@@ -1,5 +1,8 @@
 <template>
     <div class="login-content">
+        <div>
+            <img src='../assets/woodtraderlogo.png' style="width: 25%; margin-top: -10%; margin-bottom: 5%;">
+        </div>
         <form>
             <div class="form-group">
                 <input type="text" v-model="login" class="form-control" placeholder="Login">
@@ -13,6 +16,11 @@
             
         </form>
 
+        <div class="spazz-footer">
+        <div id="spazz-footer"> &copy; 2020 Created by Rafal Szczotka. All rights reserved.
+        </div>
+    </div>
+        
     </div>
 </template>
 
@@ -57,4 +65,26 @@ export default {
     margin-top: 15px;
 }
 
+.spazz-footer
+{
+    width: 100%;
+    height: 30px;
+}
+
+#spazz-footer
+{
+    height: 30px;
+    width: 100%;
+    margin-top: 23.6%;
+    font-size: 0.70vw;
+    font-family: 'Libre Baskerville', serif;
+    text-align: center;
+    color: #ffffff;
+}
+
+a.tilelink
+{
+    color: #ffffff;
+    text-decoration: none;
+}
 </style>

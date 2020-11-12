@@ -10,11 +10,11 @@
                 </div>
 
                 <div class="tile">
-                    <router-link to="/buyer" tag="li"><i class="nav-link">Panel klienta</i></router-link>
+                    <router-link to="/buyer" tag="li"><i class="nav-link">Panel kupca</i></router-link>
                 </div>
         
                 <div class="tile">
-                    <router-link to="/supplier" tag="li"><i class="nav-link">Panel kontrahenta</i></router-link>
+                    <router-link to="/supplier" tag="li"><i class="nav-link">Panel sprzedawcy</i></router-link>
                 </div>
 
                 <div class="tile">

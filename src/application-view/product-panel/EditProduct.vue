@@ -1,10 +1,10 @@
 <template>
     <div class="edit-product-content">
         
-        <label>Stara nazwa produktu</label>
+        <label>Stara nazwa sortymentu</label>
         <input type="text" id="oldProduct" class="form-control" v-model="oldProduct.product"/>
         <br>
-        <label>Nowa nazwa produktu</label>
+        <label>Nowa nazwa sortymentu</label>
         <input type="text" id="newProduct" class="form-control" v-model="newProduct.product"/>
 
         <button class="btn btn-success btn-sm" style="margin-top: 10px;" @click="update()">Zmień</button>
@@ -33,13 +33,13 @@ export default {
             params.append("newProduct", this.newProduct.product);
             axios.put('/product/updateProductName', params, {
                 headers: {
-                    Authorization: "Bearer " + store.state.jwt
+                    Authorization: "Bearer " + this.$store.state.jwt
                 }
             }).then(resp => {
                 if (resp.status == 200) {
                     alert('Zaktualizowano nazwę sortymentu')
                 }
-            })
+            }).catch((error) => {alert('Nie zaktualizowano nazwy sortymentu')})
         }
     }
 }
@@ -56,7 +56,11 @@ export default {
 }
 
 .form-control {
-  width: 170px;
+  width: 15%;
   height: 25px;
+}
+
+label, .btn {
+    font-size: 0.9vw;
 }
 </style>

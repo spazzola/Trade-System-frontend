@@ -62,6 +62,7 @@ export default new Vuex.Store({
                 commit('authUser', {
                     jwt: resp.data.jwt,
                     userName: resp.data.login
+                    
                 }), resolve(resp)
             }).catch(error => {
                 if (error.response.status === 403) {

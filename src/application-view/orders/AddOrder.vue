@@ -9,7 +9,7 @@
             </div>
       
             <div class="form-group">
-                <label>Wybierz klienta</label> <br>
+                <label>Wybierz kupca</label> <br>
                 <select v-model="selectedBuyer.buyer" @change="loadBuyerProducts">
                 <option
                     v-bind:value="{id: buyer.id, name: buyer.name}"
@@ -40,15 +40,15 @@
                 </select>
             </div>
             
-            <button class="btn btn-primary btn-success btn-sm" @click.prevent="setIndividualPrice">Dodaj indywidualną cenę</button>
-            <div class="form-group" v-if="individualPrice">
+            <button class="btn btn-primary btn-success btn-sm" @click.prevent="setIndividualSoldPrice">Dodaj indywidualną cenę sprzedaży</button>
+            <div class="form-group" v-if="individualSoldPrice">
                 <label style="margin-top: 1%;">Podaj cenę sprzedaży</label>
-                <input type="number" id="typedPrice" class="form-control" v-model="order.orderDetails[0].typedPrice"/>
+                <input type="number" id="typedSoldPrice" class="form-control" v-model="order.orderDetails[0].typedSoldPrice"/>
             </div>
 
             <div class="form-group" style="margin-top: 0.5%;">
-                <label>Wybierz kontrahenta</label> <br>
-                <select v-model="selectedSupplier.supplier">
+                <label>Wybierz sprzedawce</label> <br>
+                <select v-model="selectedSupplier.supplier" @change="loadSupplierPrice">
                 <option
                     v-bind:value="{id: supplier.id, name: supplier.name}"
                     v-for="supplier in suppliers"
@@ -57,6 +57,32 @@
                 </select>
             </div>
 
+            <p>Cena wykupu: {{ supplierPrice }} zł</p>
+
+            <button class="btn btn-primary btn-success btn-sm" @click.prevent="setIndividualBoughtPrice">Dodaj indywidualną cenę wykupu</button>
+            <div class="form-group" v-if="individualBoughtPrice">
+                <label style="margin-top: 1%;">Podaj cenę wykupu</label>
+                <input type="number" id="typedBoughtPrice" class="form-control" v-model="order.orderDetails[0].typedBoughtPrice"/>
+            </div>
+
+            <br>
+
+            <input type="radio" id="one" value="true" v-model="createBuyerInvoice">
+            <label for="one">Wygeneruj fakturę</label>
+
+            <input type="radio" id="two" value="false" v-model="createBuyerInvoice">
+            <label for="two">Pobierz z faktury zaliczkowej</label>
+            <br>
+
+            <div class="form-group" v-if="createBuyerInvoice">
+                  <label for="invoiceNumber">Numer faktury</label>
+                  <input
+                  type="text"
+                  name="invoiceNumber"
+                  class="form-control"
+                  v-model="order.orderDetails[0].invoiceNumber"
+                  />
+            </div>
             <router-link to="/orders">
                 <button class="btn btn-success btn-sm" @click="addOrder()">Dodaj</button>
             </router-link>
@@ -77,7 +103,10 @@ export default {
     },
     data() {
         return {
-        individualPrice: false,
+        supplierPrice: 0,
+        createBuyerInvoice: false,
+        individualSoldPrice: false,
+        individualBoughtPrice: false,
         selectedBuyer: {
         buyer: {
           id: null
@@ -104,11 +133,14 @@ export default {
           orderDetails: [
               {
                   quantity: null,
-                  typedPrice: 0,
+                  typedSoldPrice: 0,
+                  typedBoughtPrice: 0,
                   transportNumber: '',
                   product: {
                       id: 0
-                  }
+                  },
+                  invoiceNumber: null,
+                  createBuyerInvoice: null
               }
           ]
         },
@@ -128,6 +160,7 @@ export default {
     },
   methods: {
       addOrder() {
+        this.order.orderDetails[0].createBuyerInvoice = this.createBuyerInvoice;
         this.order.buyerId = this.selectedBuyer.buyer.id;
         this.order.supplierId = this.selectedSupplier.supplier.id;
         this.order.orderDetails[0].product.id = this.selectedProduct.name.id;
@@ -139,7 +172,7 @@ export default {
           if (resp.status == 200) {
             alert('Dodano zamówienie')
           }
-        }).catch((error) => {alert(error.response.data.message)}
+        }).catch((error) => {alert('Nie dodano zamówienia')}
         )
       },
       loadBuyerProducts() {
@@ -159,13 +192,29 @@ export default {
             this.products.push(product);
         }})
       },
-      setIndividualPrice() {
-        this.individualPrice = !this.individualPrice;
+      loadSupplierPrice() {
+        axios.get('price/getSupplierPrice', {
+          headers: {
+            'Authorization': 'Bearer ' + this.$store.state.jwt
+          },
+          params: {
+            supplierId: this.selectedSupplier.supplier.id,
+            productId: this.selectedProduct.name.id
+          }
+        }).then( resp => 
+        this.supplierPrice = resp.data)
+      },
+      setIndividualSoldPrice() {
+        this.individualSoldPrice = !this.individualSoldPrice;
         this.showAddNewProductContent = false;
+      },
+      setIndividualBoughtPrice() {
+        this.individualBoughtPrice = !this.individualBoughtPrice;
+
       },
       changeAddNewProduct() {
         this.showAddNewProductContent = !this.showAddNewProductContent;
-        this.individualPrice = false;
+        this.individualSoldPrice = false;
       }
   },
     created() {
@@ -193,6 +242,14 @@ export default {
             this.suppliers.push(supplier);
           }
         })
+    },  
+    updated() {
+      if (this.createBuyerInvoice == "false") {
+        this.createBuyerInvoice = false
+      }
+      if (this.createBuyerInvoice == "true") {
+        this.createBuyerInvoice = true
+      }
     }
 }
 </script>
@@ -209,7 +266,21 @@ export default {
 }
 
 .form-control {
-  width: 150px;
+  width: 13%;
+  font-size: 0.9vw; 
   height: 25px;
+
+}
+
+p {
+  font-size: 0.9vw;
+}
+
+.form-group {
+  font-size: 0.9vw; 
+}
+
+.button, .btn, label {
+  font-size: 0.9vw;
 }
 </style>

@@ -17,12 +17,9 @@ export default {
 
 .leftmenu
 {
-    margin-top: 75px;
-    width: 200px;
-    height: 510px;
+    margin-top: 5%;
     float: left;  
     margin-left: 20%;
-
 }
 
 .tile

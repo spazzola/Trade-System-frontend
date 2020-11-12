@@ -1,7 +1,7 @@
 <template>
     <div class="add-supplier-content">
         <div class="form-group">
-            <label>Nazwa kontrahenta</label>
+            <label>Nazwa sprzedawcy</label>
             <input type="text" id="date" class="form-control" v-model="supplier.name"/>
             <button 
                     class="btn btn-success btn-sm" 
@@ -30,12 +30,11 @@ export default {
                 headers: {
                     'Authorization': 'Bearer ' + this.$store.state.jwt
           }
-            }).catch((error) => {alert(error.response.data.message)})
-            .then(resp => {
+            }).then(resp => {
                 if (resp.status == 200) {
-                    alert('Dodano kontrahenta')
+                    alert('Dodano sprzedawce')
                 }
-            })
+            }).catch((error) => {alert('Nie dodano sprzedawcy')})
             .then(this.$store.commit('getAllBuyers'))
             setTimeout(()=>{
                 this.supplier.name = ''
@@ -56,13 +55,18 @@ export default {
 }
 
 .form-control {
-  width: 150px;
+  width: 15%;
   height: 25px;
+  font-size: 0.9vw;
 }
 
 button {
     opacity: 1;
     display: inline;
-    font-size: 0.8vw;
+    font-size: 0.9vw;
+}
+
+label {
+    font-size: 0.9vw;
 }
 </style>

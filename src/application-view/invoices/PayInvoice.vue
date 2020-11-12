@@ -30,10 +30,11 @@ export default {
           headers: {
             Authorization: "Bearer " + this.$store.state.jwt
           }
-        })
-        .then(resp => {
-          console.log(resp);
-        });
+        }).then(resp => {
+          if (resp.status == 200) {
+            alert('Zapłacono fakturę')
+          };
+        }).catch((error) => {alert('Nie zapłacono za fakturę')})
     }
   }
 }
@@ -50,13 +51,18 @@ export default {
 }
 
 .form-control {
-  width: 70px;
+  width: 10%;
   height: 25px;
+  font-size: 0.9vw;
 }
 
 button {
     opacity: 1;
     display: inline;
-    font-size: 0.8vw;
+    font-size: 0.9vw;
+}
+
+label {
+  font-size: 0.9vw;
 }
 </style>

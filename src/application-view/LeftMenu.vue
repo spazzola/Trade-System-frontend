@@ -6,7 +6,7 @@
     <h2 
       @mouseover="hoverBuyers = true, getBuyersTotalPositiveBalance(), getBuyersTotalNegativeBalance()"
       @mouseleave="hoverBuyers = false"
-    >Klienci</h2>
+    >Kupcy</h2>
 
     <div class="hoveredBalances">
         <p 
@@ -24,20 +24,22 @@
         </p>
     </div>  
 
-    <ul>
-      <li
-        v-for="(buyer, index) in buyers"
-        v-bind:key="index"
-  
-        :style="{color: checkAmount(buyer.currentBalance)}">
-        {{buyer.name}} : {{buyer.currentBalance | toCurrency }} &emsp; | &emsp; {{ buyer.currentBalance * 0.23 + buyer.currentBalance  | toCurrency}}</li>
+    <div class="listWrap">
+      <ul>
+        <li
+          v-for="(buyer, index) in buyers"
+          v-bind:key="index"
+    
+          :style="{color: checkAmount(buyer.currentBalance)}">
+          {{buyer.name}} : {{buyer.currentBalance | toCurrency }} &emsp; | &emsp; {{ buyer.currentBalance * 0.23 + buyer.currentBalance  | toCurrency}}</li>
     </ul>
+    </div>
 
     <h2 
       style="margin-top: 20px;"       
       @mouseover="hoverSuppliers = true, getSuppliersTotalPositiveBalance(), getSuppliersTotalNegativeBalance()"
       @mouseleave="hoverSuppliers = false"
-    >Kontrahenci</h2>
+    >Sprzedawcy</h2>
     
     <div class="hoveredBalances">
         <p 
@@ -54,14 +56,17 @@
           >{{ suppliersNegativeBalance| toCurrency }}
         </p>
     
-    </div>  
-    <ul>
-      <li
-        v-for="(supplier, index) in suppliers"
-        v-bind:key="index"
-        :style="{color: checkAmount(supplier.currentBalance)}">
-        {{supplier.name}} : {{supplier.currentBalance | toCurrency }}</li>
+    </div>
+
+    <div class="listWrap">
+      <ul>
+        <li
+          v-for="(supplier, index) in suppliers"
+          v-bind:key="index"
+          :style="{color: checkAmount(supplier.currentBalance)}">
+          {{supplier.name}} : {{ supplier.currentBalance | toCurrency }} &emsp; | &emsp; {{ supplier.currentlyTakenQuantity | toCurrency }} m3</li>
     </ul>
+    </div>  
   </div>
 </template>
 
@@ -88,7 +93,6 @@ import axios from '../axios-auth'
    },
    methods: {
      show() {
-       console.log("ehaa")
      },
     checkAmount(value) {
       if (value < 0) {
@@ -138,8 +142,7 @@ import axios from '../axios-auth'
   border-radius: 5px;
   margin-left: 2%;
   position: relative;
-  overflow: scroll;
-
+  overflow: auto;
   background-color: white;
   opacity: 0.8;
 }
@@ -175,5 +178,11 @@ ul {
 p {
   display: inline-block;
   margin-left: 5%;
+  font-size: 0.9vw;
+}
+
+.listWrap {
+  width: 130%;
+  margin-left: 2%;
 }
 </style>

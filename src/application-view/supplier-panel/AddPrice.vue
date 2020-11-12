@@ -4,7 +4,7 @@
         <form>
             <div class="form-group">
 
-            <label>Wybierz produkt</label>
+            <label>Wybierz sortyment</label>
             <br>
             <select v-model="price.product">
                 <option
@@ -28,7 +28,7 @@
             </div>
 
             <div class="form-group">
-            <label>Wybierz kontrahenta</label>
+            <label>Wybierz sprzedawce</label>
             <br />
             <select v-model="price.supplier">
                 <option
@@ -73,14 +73,14 @@ export default {
                 }
             }).then(resp => {
                 if (resp.status == 200) {
-                    alert('Dodano cenę dla kontrahenta')
+                    alert('Dodano cenę dla sprzedawcy')
                 }
-            })
+            }).catch((error) => {alert('Nie dodano ceny dla sprzedawcy')})
         },
     },
     beforeCreate() {
         this.suppliers = []
-        axios.get("http://localhost:8080/supplier/getAll", {
+        axios.get("/supplier/getAll", {
         headers: {
                 'Authorization': 'Bearer ' + this.$store.state.jwt
             }

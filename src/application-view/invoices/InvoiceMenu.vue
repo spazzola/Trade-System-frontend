@@ -93,7 +93,7 @@ export default {
 .invoice-menu {
     height: 3.9%;
     float: left;
-    width: 70%;
+    width: 30%;
     margin-left: 1%;
     margin-top: 0.3%;
     font-size: 0.9vw;
@@ -101,7 +101,7 @@ export default {
 
 .sort-menu {
     float: left;
-    width: 70%;
+    width: 30%;
     margin-left: 1%;
     margin-top: 0.3%;
     font-size: 0.9vw;

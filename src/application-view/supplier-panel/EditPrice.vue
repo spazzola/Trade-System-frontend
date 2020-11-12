@@ -3,7 +3,7 @@
     <div class="edit-price-content">
         <form>
             <div class="form-group">
-                <label>Wybierz kontrahenta</label>
+                <label>Wybierz sprzedawcy</label> <br>
                 <select v-model="selectedSupplier.supplier" @change="loadSupplierProducts">
                     <option
                     v-bind:value="{id: supplier.id, name: supplier.name}"
@@ -13,7 +13,7 @@
                 </select>
                 </div>
                 <div class="form-group">
-                <label>Wybierz sortyment</label>
+                <label>Wybierz sortyment</label> <br>
                 <select v-model="selectedProduct">
                     <option
                     v-bind:value="{name: product.product}"
@@ -73,10 +73,9 @@ export default {
                 },
             }).then(resp => {
                 if (resp.status == 200) {
-                    alert('Zaktualizowano cenę kontrahenta')
+                    alert('Zaktualizowano cenę sprzedawcy')
                 }
-            })
-            .catch((error) => {console.log(error.response.data.message)});
+            }).catch((error) => {alert('Nie zaktualizowano ceny dla sprzedawcy')})
             this.newPriceValue = 0;
             this.isEditSupplier = false;
             this.loadSupplierProducts();
@@ -115,13 +114,18 @@ export default {
 }
 
 .form-control {
-  width: 150px;
+  width: 15%;
   height: 25px;
+  font-size: 0.9vw;
 }
 
 button {
     opacity: 1;
     display: inline;
-    font-size: 0.8vw;
+    font-size: 0.9vw;
+}
+
+label {
+    font-size: 0.9vw;
 }
 </style>

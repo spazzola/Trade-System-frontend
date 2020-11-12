@@ -36,8 +36,8 @@
                     <input type="text" id="comment" class="form-control" v-model="invoice.comment" />
                 </div>
 
-                <div class="form-group">
-                    <label>Wybierz klienta</label> <br>
+                <div class="form-group" style="float: left;">
+                    <label>Wybierz kupca</label> <br>
                     <select v-model="selectedBuyer.buyer">
                     <option
                         v-bind:value="{id: buyer.id, name: buyer.name}"
@@ -47,10 +47,10 @@
                     </select>
                 </div>
 
-                <p style="display: block; margin-left: 50px; font-weight: bold;">lub</p>
+                <p style="display: block; float: left; margin-left: 3%; margin-right: 3%; font-weight: bold;">lub</p>
 
                 <div class="form-group">
-                    <label>Wybierz kontrahenta</label> <br>
+                    <label>Wybierz sprzedawce</label> <br>
                     <select v-model="selectedSupplier.supplier">
                     <option
                         v-bind:value="{id: supplier.id, name: supplier.name}"
@@ -59,6 +59,12 @@
                     >{{ supplier.name }}</option>
                     </select>
                 </div>
+
+                <div>
+                    <input type="checkbox" id="checkbox" v-model="invoice.toEqualizeNegativeInvoice">
+                    <label for="checkbox"> Do wyrównania ujemnego salda </label>
+                </div>
+                
                 <router-link to="/invoices">
                     <button class="btn btn-success btn-sm" @click="addInvoice">Dodaj</button>
                 </router-link>
@@ -81,6 +87,7 @@ export default {
             value: null,
             amountToUse: 0,
             paid: false,
+            toEqualizeNegativeInvoice: false,
             comment: "",
             buyer: {
             id: null
@@ -110,6 +117,7 @@ export default {
         this.invoice.paid = this.isPaid;
         this.invoice.amountToUse = this.invoice.value;
 
+
         if (this.selectedBuyer.buyer.id != null) {
             this.invoice.buyer.id = this.selectedBuyer.buyer.id;
             this.invoice.supplier = null;
@@ -121,7 +129,7 @@ export default {
                 if (resp.status == 200) {
                     alert('Dodano fakturę')
                 }
-            }).catch((error) => {alert(error.response.data.message)});
+            }).catch((error) => {alert('Nie dodano faktury')});
         } else {
             this.invoice.supplier.id = this.selectedSupplier.supplier.id;
             this.invoice.buyer = null;
@@ -133,7 +141,7 @@ export default {
                 if (resp.status == 200) {
                     alert('Dodano fakture')
                 }
-            }).catch((error) => {alert(error.response.data.message)})
+            }).catch((error) => {alert('Nie dodano faktury')})
         }
         },
         getDate() {
@@ -176,7 +184,12 @@ export default {
 }
 
 .form-control {
-  width: 150px;
+  width: 15%;
   height: 25px;
+  font-size: 0.9vw;
+}
+
+label, p {
+    font-size: 0.9vw;
 }
 </style>

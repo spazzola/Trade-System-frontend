@@ -58,5 +58,6 @@ export default {
     position: relative;
     float: left;
     padding: 0px;
+
 }
 </style>

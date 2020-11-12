@@ -60,7 +60,7 @@ export default {
     border-radius: 5%;
     padding: 5px;
     float: left;
-     margin-left: 10px;
+    margin-left: 10px;
 }
 
 #borderBottom
@@ -114,7 +114,7 @@ export default {
 	width: 770px;
     height: 400px;
 	margin-top: 50px;
-	right: 20px;
+	right: 35px;
 	margin-bottom: 10vh;
 	margin-right: auto;
 	margin-left: auto;

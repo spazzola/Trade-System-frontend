@@ -1,7 +1,7 @@
 <template>
     <div class="add-product-content">
         
-            <label>Nazwa produktu</label>
+            <label>Nazwa sortymentu</label>
             <input type="text" id="date" class="form-control" v-model="product.product" />
                 
             <button class="btn btn-success btn-sm" style="margin-top: 10px;" @click="create">Dodaj</button>
@@ -31,7 +31,7 @@ export default {
                 if (resp.status == 200) {
                     alert('Dodano sortyment')
                 }
-            })
+            }).catch((error) => {alert('Nie dodano sortymentu')})
             .then(setTimeout(()=>{
                 this.product.product = ''
                 },100))
@@ -51,7 +51,11 @@ export default {
 }
 
 .form-control {
-  width: 150px;
+  width: 15%;
   height: 25px;
+}
+
+label, .btn {
+    font-size: 0.9vw;
 }
 </style>

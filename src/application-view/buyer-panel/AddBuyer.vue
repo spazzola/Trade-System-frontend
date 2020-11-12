@@ -1,7 +1,7 @@
 <template>
     <div class="add-buyer-content">
         <div class="form-group">
-            <label>Nazwa klienta</label>
+            <label>Nazwa kupca</label>
             <input type="text" id="date" class="form-control" v-model="buyer.name"/>
             <button 
                     class="btn btn-success btn-sm" 
@@ -34,9 +34,9 @@ export default {
             .then(this.$store.commit('getAllBuyers'))
             .then(resp => {
                 if (resp.status == 200) {
-                    alert('Dodano klienta')
+                    alert('Dodano kupca')
                 }
-            }).catch((error) => {alert(error.response.data.message)});
+            }).catch((error) => {alert('Nie dodano kupca')});
             setTimeout(()=>{
                 this.buyer.name = ''
                 },100);
@@ -56,13 +56,17 @@ export default {
 }
 
 .form-control {
-  width: 150px;
+  width: 13%;
   height: 25px;
 }
 
 button {
     opacity: 1;
     display: inline;
-    font-size: 0.8vw;
+    font-size: 0.9vw;
+}
+
+label {
+    font-size: 0.9vw;
 }
 </style>
