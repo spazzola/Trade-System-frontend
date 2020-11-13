@@ -30,13 +30,10 @@
                       <th scope="col">Wartość sprzedanych zamówień</th>
                       <th scope="col">Wartośc kupionych zamówień</th>
                       <th scope="col">Sprzedana ilość (m3)</th>
-                      <th scope="col">Nieużyta kwota kupców</th>
-                      <th scope="col">Nieużyta kwota u sprzedawców</th>
-                      <th scope="col">Średnie kupno (m3/zl)</th>
-                      <th scope="col">Średnia sprzedaż (m3/zl)</th>
                       <th scope="col">Sredni zarobek na m3</th>
                       <th scope="col">Suma kosztów</th>
-                      <th scope="col">Zysk</th>
+                      <th scope="col">Przychód</th>
+                      <th scope="col">Suma niezapłaconych faktur kupców</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -45,13 +42,10 @@
                       <td scope="row">{{ report.soldValue | toCurrency }}</td>
                       <td scope="row">{{ report.boughtValue | toCurrency }}</td>
                       <td scope="row">{{ report.soldQuantity | toCurrency }}</td>
-                      <td scope="row">{{ report.buyersNotUsedValue | toCurrency }}</td>
-                      <td scope="row">{{ report.suppliersNotUsedValue | toCurrency }}</td>
-                      <td scope="row">{{ report.averagePurchase | toCurrency }}</td>
-                      <td scope="row">{{ report.averageSold | toCurrency }}</td>
                       <td scope="row">{{ report.averageEarningsPerM3 | toCurrency }}</td>
                       <td scope="row">{{ report.sumCosts | toCurrency }}</td>
-                      <td scope="row">{{ report.profit | toCurrency }}</td>
+                      <td scope="row">{{ report.income | toCurrency }}</td>
+                      <td scope="row>">-{{ report.buyersNotPaidInvoices | toCurrency }} </td>
                     </tr>
                   </tbody>
                 </table>
@@ -243,7 +237,7 @@ export default {
                 headers: {
                     'Authorization': 'Bearer ' + this.$store.state.jwt
                 },
-                params
+                pa
             }).then(resp => {
             const data = resp.data;
             for (let key in data) {
@@ -310,7 +304,7 @@ export default {
 
 table {
   margin-top: 0.5%;
-  width: 2500px;
+  width: 2000px;
 }
 
 li {
