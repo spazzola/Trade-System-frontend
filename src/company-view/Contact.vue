@@ -35,8 +35,8 @@
             Rycerka Górna 283C<br>
             34-370 Rajcza <br>
             NIP: 553 100 62 39 <br>
-            IBAN: 18 1020 1390 0000 6702 0642 7589
-            SWIFT: BPKOPLPW
+            IBAN: 18 1020 1390 0000 6702 0642 7589 <br>
+            SWIFT: BPKOPLPW <br>
             VAT: 23 1020 1390 0000 6502 0642 7597<br>
             </div>
             <div style="clear: both;"></div>
