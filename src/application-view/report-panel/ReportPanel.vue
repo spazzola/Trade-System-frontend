@@ -237,7 +237,7 @@ export default {
                 headers: {
                     'Authorization': 'Bearer ' + this.$store.state.jwt
                 },
-                pa
+                params
             }).then(resp => {
             const data = resp.data;
             for (let key in data) {
