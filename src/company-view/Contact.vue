@@ -11,7 +11,7 @@
                 <h2><strong>Prezes firmy</strong></h2>
                 Adam Szczotka <br>
                 tel.: +48 602 597 988 <br>
-                adamdalibor2019@gmail.com <br> <br>
+                biuro@forestindustrysa.pl <br> <br>
             </div>
 
             <div class="contactTile"  style="float: left;">
@@ -19,14 +19,14 @@
                 Dalibor Leher <br>
                 tel.: +48 797 860 707 <br>
                 tel.: +420 123 456 789
-                adamdalibor2019@gmail.com <br> <br>
+                biuro@forestindustrysa.pl <br> <br>
             </div>
         
             <div class="contactTile" style="float: right; right: 10px;">
                 <h2>Technik administracji</h2>
                 Bartosz Wisiński <br>
                 tel.: +48 505 605 469 <br>
-                adamdalibor2019@gmail.com <br> <br>
+                biuro@forestindustrysa.pl <br> <br>
             </div>
             <div style="clear: both;"></div>
                 
@@ -35,8 +35,9 @@
             Rycerka Górna 283C<br>
             34-370 Rajcza <br>
             NIP: 553 100 62 39 <br>
-            IBAN: PL18 1020 1390 0000 6702 0642 7589 <br>
+            IBAN: 18 1020 1390 0000 6702 0642 7589
             SWIFT: BPKOPLPW
+            VAT: 23 1020 1390 0000 6502 0642 7597<br>
             </div>
             <div style="clear: both;"></div>
         </div>
